@@ -4,6 +4,7 @@ Resource    ../Resources/OntipApp.robot
 Resource    ../Resources/PO/SelectToernooiPage.robot
 Resource    ../Resources/Common.robot
 
+# robot -d results  tests/SelecteerToernooi.robot
 
 # gebruik Suite omdat anders tussendoor wordt afgelogd
 Suite Setup       Common.Begin Web Test
