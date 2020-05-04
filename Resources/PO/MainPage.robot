@@ -27,6 +27,7 @@ Verify optie "Aanloggen"
     Page Should Contain Element       ${MENU_OPTION_AANLOGGEN}
     ${menu_option_text} =   GET TEXT  ${MENU_OPTION_AANLOGGEN}
     Log  ${menu_option_text}
+    # If .. Else
     Run Keyword if  '${menu_option_text}' != 'Aanloggen'
       ...  Kies Optie "Afloggen"
 
