@@ -27,10 +27,10 @@ Verify optie "Aanloggen"
     Page Should Contain Element       ${MENU_OPTION_AANLOGGEN}
     ${menu_option_text} =   GET TEXT  ${MENU_OPTION_AANLOGGEN}
     Log  ${menu_option_text}
-    # If .. Else
+    # If   condition    Else
     Run Keyword if  '${menu_option_text}' != 'Aanloggen'
-      ...  Kies Optie "Afloggen"
-
+      ...  Kies Optie "Afloggen"  ELSE
+      ...  Kies Optie "Aanloggen"
 
 Load "Selecteer toernooi"
     Wait until Page Contains Element   ${MENU_OPTION_SELECTEER_TOERNOOI}
