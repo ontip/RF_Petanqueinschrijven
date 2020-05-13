@@ -1,76 +1,400 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.1.2 (Python 3.7.7 on win32)" generated="20200513 13:19:07.879" rpa="false">
-<suite id="s1" name="CheckInschrijvenToernooi" source="C:\Users\Gebruiker\OneDrive\GitHub\RF_petanqueinschrijven\tests\CheckInschrijvenToernooi.robot">
-<test id="s1-t1" name="Validate if inschrijvingen exist">
-<kw name="Connect" library="MySql" type="setup">
-<kw name="Connect To Database" library="DatabaseLibrary">
-<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
-connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
+<robot generator="Robot 3.1.2 (Python 3.7.7 on win32)" generated="20200513 14:48:36.611" rpa="false">
+<suite id="s1" name="InschrijvenToernooi" source="C:\Users\Gebruiker\OneDrive\GitHub\RF_petanqueinschrijven\tests\InschrijvenToernooi.robot">
+<test id="s1-t1" name="Deelnemer moet zich kunnen inschrijven voor een toernooi">
+<kw name="Begin Web Test" library="Common" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
 <arguments>
-<arg>pymysql</arg>
-<arg>${DB_NAME}</arg>
-<arg>${DB_USER_NAME}</arg>
-<arg>${DB_USER_PASSWORD}</arg>
-<arg>${DB_HOST}</arg>
-<arg>${DB_PORT}</arg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.338" level="INFO">Connecting using : pymysql.connect(db=u875346739_ontipnlv_db, user=u875346739_ontip, passwd=Obelikx61#, host=45.87.80.101, port=3306, charset=None) </msg>
-<status status="PASS" starttime="20200513 13:19:08.240" endtime="20200513 13:19:08.406"></status>
+<msg timestamp="20200513 14:48:38.162" level="INFO">Opening browser 'chrome' to base url 'https://www.petanqueinschrijven.com/boulamis/Inschrijfform.php?toernooi=erik_test_toernooi'.</msg>
+<status status="PASS" starttime="20200513 14:48:38.161" endtime="20200513 14:48:48.578"></status>
 </kw>
-<status status="PASS" starttime="20200513 13:19:08.238" endtime="20200513 13:19:08.406"></status>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200513 14:48:48.579" endtime="20200513 14:48:52.795"></status>
 </kw>
-<kw name="Validate if inschrijvingen exist" library="MySql">
+<status status="PASS" starttime="20200513 14:48:38.159" endtime="20200513 14:48:52.796"></status>
+</kw>
+<kw name="Load &quot;Inschrijf formulier&quot;" library="InschrijfApp">
 <arguments>
-<arg>${toernooi}</arg>
+<arg>${url}</arg>
 </arguments>
-<kw name="Row Count" library="DatabaseLibrary">
-<doc>Uses the input `selectStatement` to query the database and returns the number of rows from the query. Set
-optional input `sansTran` to True to run command without an explicit transaction commit or rollback.</doc>
+<kw name="Load &quot;Inschrijf formulier&quot;" library="Inschrijfformulier">
 <arguments>
-<arg>SELECT * FROM inschrijf Where Toernooi = '${toernooi}';</arg>
+<arg>${url}</arg>
+</arguments>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:52.802" level="INFO">Opening url 'https://www.petanqueinschrijven.com/boulamis/Inschrijfform.php?toernooi=erik_test_toernooi'</msg>
+<status status="PASS" starttime="20200513 14:48:52.801" endtime="20200513 14:48:53.191"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:52.800" endtime="20200513 14:48:53.191"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:52.798" endtime="20200513 14:48:53.191"></status>
+</kw>
+<kw name="Validate &quot;Inschrijf formulier&quot; is loaded" library="InschrijfApp">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Validate &quot;Inschrijf formulier&quot;" library="Inschrijfformulier">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:53.200" level="INFO">Opening url 'https://www.petanqueinschrijven.com/boulamis/Inschrijfform.php?toernooi=erik_test_toernooi'</msg>
+<status status="PASS" starttime="20200513 14:48:53.199" endtime="20200513 14:48:53.473"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>OnTip Inschrijfformulier</arg>
+</arguments>
+<msg timestamp="20200513 14:48:53.494" level="INFO">Page title is 'OnTip Inschrijfformulier'.</msg>
+<status status="PASS" starttime="20200513 14:48:53.473" endtime="20200513 14:48:53.495"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${INSCHRIJF_FORMULIER_FORM}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.496" endtime="20200513 14:48:53.573"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_field_licentie1}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.573" endtime="20200513 14:48:53.608"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_field_licentie2}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.609" endtime="20200513 14:48:53.636"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_field_naam1}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.637" endtime="20200513 14:48:53.660"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_field_naam2}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.661" endtime="20200513 14:48:53.690"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_field_vereniging1}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.690" endtime="20200513 14:48:53.715"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_field_vereniging2}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.715" endtime="20200513 14:48:53.741"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_field_telefoon}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.742" endtime="20200513 14:48:53.776"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_field_email}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.776" endtime="20200513 14:48:53.809"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${antispam_challenge}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.809" endtime="20200513 14:48:53.836"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_field_respons}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.836" endtime="20200513 14:48:53.860"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${checkbox_privacy}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.860" endtime="20200513 14:48:53.884"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${Input_image_loep}</arg>
+</arguments>
+<status status="PASS" starttime="20200513 14:48:53.885" endtime="20200513 14:48:53.913"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:53.194" endtime="20200513 14:48:53.913"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:53.193" endtime="20200513 14:48:53.913"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>&amp;{INSCHRIJVING)</arg>
+<arg>&amp;{inschrijving}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:53.915" level="INFO">&amp;{INSCHRIJVING} = { licentie1=45909 | naam1=Erik Hendrikx | vereniging1=Boulamis | licentie2=45910 | naam2=Petra Hendrikx | vereniging2=Boulamis }</msg>
+<status status="PASS" starttime="20200513 14:48:53.914" endtime="20200513 14:48:53.916"></status>
+</kw>
+<kw name="Should be able to &quot;Inschrijven met behulp van Licentie en Naam en Vereniging&quot;" library="InschrijfApp">
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Should be able to &quot;Inschrijven met behulp van Licentie en Naam en Vereniging&quot;" library="Inschrijfformulier">
+<doc>Inschrijven het invullen van de licentie, naam en vereniging</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:53.920" level="INFO">Opening url 'https://www.petanqueinschrijven.com/boulamis/Inschrijfform.php?toernooi=erik_test_toernooi'</msg>
+<status status="PASS" starttime="20200513 14:48:53.920" endtime="20200513 14:48:54.241"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${LICENTIE1}</arg>
+<arg>&amp;{INSCHRIJVING}[licentie1]</arg>
+</arguments>
+<msg timestamp="20200513 14:48:54.243" level="INFO">${LICENTIE1} = 45909</msg>
+<status status="PASS" starttime="20200513 14:48:54.242" endtime="20200513 14:48:54.243"></status>
+</kw>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
+<arguments>
+<arg>${Input_field_licentie1}</arg>
+<arg>&amp;{INSCHRIJVING}[licentie1]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:54.245" level="INFO">Typing text '45909' into text field 'css=Input[name=Licentie1]'.</msg>
+<status status="PASS" starttime="20200513 14:48:54.244" endtime="20200513 14:48:54.499"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:54.243" endtime="20200513 14:48:54.499"></status>
+</kw>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
+<arguments>
+<arg>${Input_field_licentie2}</arg>
+<arg>&amp;{INSCHRIJVING}[licentie2]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:54.502" level="INFO">Typing text '45910' into text field 'css=Input[name=Licentie2]'.</msg>
+<status status="PASS" starttime="20200513 14:48:54.501" endtime="20200513 14:48:54.760"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:54.500" endtime="20200513 14:48:54.760"></status>
+</kw>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
+<arguments>
+<arg>${Input_field_naam1}</arg>
+<arg>&amp;{INSCHRIJVING}[naam1]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:54.762" level="INFO">Typing text 'Erik Hendrikx' into text field 'css=Input[name=Naam1]'.</msg>
+<status status="PASS" starttime="20200513 14:48:54.761" endtime="20200513 14:48:55.104"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:54.760" endtime="20200513 14:48:55.104"></status>
+</kw>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
+<arguments>
+<arg>${Input_field_naam2}</arg>
+<arg>&amp;{INSCHRIJVING}[naam2]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:55.106" level="INFO">Typing text 'Petra Hendrikx' into text field 'css=Input[name=Naam2]'.</msg>
+<status status="PASS" starttime="20200513 14:48:55.106" endtime="20200513 14:48:55.441"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:55.105" endtime="20200513 14:48:55.441"></status>
+</kw>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
+<arguments>
+<arg>${Input_field_vereniging1}</arg>
+<arg>&amp;{INSCHRIJVING}[vereniging1]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:55.443" level="INFO">Typing text 'Boulamis' into text field 'css=Input[name=Vereniging1]'.</msg>
+<status status="PASS" starttime="20200513 14:48:55.443" endtime="20200513 14:48:55.729"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:55.441" endtime="20200513 14:48:55.729"></status>
+</kw>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
+<arguments>
+<arg>${Input_field_vereniging2}</arg>
+<arg>&amp;{INSCHRIJVING}[vereniging2]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:55.732" level="INFO">Typing text 'Boulamis' into text field 'css=Input[name=Vereniging2]'.</msg>
+<status status="PASS" starttime="20200513 14:48:55.731" endtime="20200513 14:48:56.023"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:55.730" endtime="20200513 14:48:56.023"></status>
+</kw>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
+<arguments>
+<arg>${Input_field_telefoon}</arg>
+<arg>033-2988547</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:56.025" level="INFO">Typing text '033-2988547' into text field 'css=Input[name=Telefoon]'.</msg>
+<status status="PASS" starttime="20200513 14:48:56.025" endtime="20200513 14:48:56.323"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:56.023" endtime="20200513 14:48:56.323"></status>
+</kw>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
+<arguments>
+<arg>${Input_field_email}</arg>
+<arg>erik.hendrikx@kpnmail.nl</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:56.325" level="INFO">Typing text 'erik.hendrikx@kpnmail.nl' into text field 'css=Input[name=Email]'.</msg>
+<status status="PASS" starttime="20200513 14:48:56.324" endtime="20200513 14:48:56.919"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:56.323" endtime="20200513 14:48:56.920"></status>
+</kw>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
+<arguments>
+<arg>${Textarea_field_opmerkingen}</arg>
+<arg>Dit betreft een geautomatiseerde test</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:56.922" level="INFO">Typing text 'Dit betreft een geautomatiseerde test' into text field 'css=Textarea[Name=Opmerkingen]'.</msg>
+<status status="PASS" starttime="20200513 14:48:56.922" endtime="20200513 14:48:57.609"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:56.920" endtime="20200513 14:48:57.609"></status>
+</kw>
+<kw name="Select checkbox field" library="Inschrijfformulier">
+<arguments>
+<arg>${checkbox_privacy}</arg>
+</arguments>
+<kw name="Select Checkbox" library="SeleniumLibrary">
+<doc>Selects the checkbox identified by ``locator``.</doc>
+<arguments>
+<arg>${InputCheckBox}</arg>
+</arguments>
+<msg timestamp="20200513 14:48:57.612" level="INFO">Selecting checkbox 'css=Input[name=privacy]'.</msg>
+<status status="PASS" starttime="20200513 14:48:57.611" endtime="20200513 14:48:57.859"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:57.610" endtime="20200513 14:48:57.859"></status>
+</kw>
+<kw name="Get Value" library="SeleniumLibrary">
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${antispam_challenge}</arg>
 </arguments>
 <assign>
-<var>${current_row_count}</var>
+<var>${challenge}</var>
 </assign>
-<msg timestamp="20200513 13:19:08.410" level="INFO">Executing : Row Count  |  SELECT * FROM inschrijf Where Toernooi = 'erik_test_toernooi'; </msg>
-<msg timestamp="20200513 13:19:08.432" level="INFO">${current_row_count} = 5</msg>
-<status status="PASS" starttime="20200513 13:19:08.409" endtime="20200513 13:19:08.432"></status>
+<msg timestamp="20200513 14:48:57.939" level="INFO">${challenge} = 7828</msg>
+<status status="PASS" starttime="20200513 14:48:57.860" endtime="20200513 14:48:57.939"></status>
 </kw>
-<kw name="Log" library="BuiltIn">
-<doc>Logs the given message with the given level.</doc>
+<kw name="Fill &quot;Input&quot; Field" library="Inschrijfformulier">
 <arguments>
-<arg>${current_row_count}</arg>
+<arg>${Input_field_respons}</arg>
+<arg>${challenge}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.434" level="INFO">5</msg>
-<status status="PASS" starttime="20200513 13:19:08.433" endtime="20200513 13:19:08.434"></status>
-</kw>
-<kw name="Row Count Is Greater Than X" library="DatabaseLibrary">
-<doc>Check if the number of rows returned from `selectStatement` is greater than the value submitted. If not, then
-this will throw an AssertionError. Set optional input `sansTran` to True to run command without an explicit
-transaction commit or rollback.</doc>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
 <arguments>
-<arg>SELECT * FROM inschrijf Where Toernooi = '${toernooi}';</arg>
-<arg>0</arg>
+<arg>${InputTextBox}</arg>
+<arg>${content}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.435" level="INFO">Executing : Row Count Is Greater Than X  |  SELECT * FROM inschrijf Where Toernooi = 'erik_test_toernooi';  |  0 </msg>
-<msg timestamp="20200513 13:19:08.436" level="INFO">Executing : Row Count  |  SELECT * FROM inschrijf Where Toernooi = 'erik_test_toernooi'; </msg>
-<status status="PASS" starttime="20200513 13:19:08.435" endtime="20200513 13:19:08.457"></status>
+<msg timestamp="20200513 14:48:57.941" level="INFO">Typing text '7828' into text field 'css=Input[name=respons]'.</msg>
+<status status="PASS" starttime="20200513 14:48:57.941" endtime="20200513 14:48:58.202"></status>
 </kw>
-<status status="PASS" starttime="20200513 13:19:08.408" endtime="20200513 13:19:08.458"></status>
+<status status="PASS" starttime="20200513 14:48:57.939" endtime="20200513 14:48:58.202"></status>
 </kw>
-<kw name="Disconnect" library="MySql" type="teardown">
-<kw name="Disconnect From Database" library="DatabaseLibrary">
-<doc>Disconnects from the database.</doc>
-<msg timestamp="20200513 13:19:08.462" level="INFO">Executing : Disconnect From Database</msg>
-<status status="PASS" starttime="20200513 13:19:08.461" endtime="20200513 13:19:08.463"></status>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>4s</arg>
+</arguments>
+<msg timestamp="20200513 14:49:02.204" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20200513 14:48:58.203" endtime="20200513 14:49:02.204"></status>
 </kw>
-<status status="PASS" starttime="20200513 13:19:08.460" endtime="20200513 13:19:08.463"></status>
+<kw name="Submit Form" library="SeleniumLibrary">
+<doc>Submits a form identified by ``locator``.</doc>
+<msg timestamp="20200513 14:49:02.205" level="INFO">Submitting form 'None'.</msg>
+<status status="PASS" starttime="20200513 14:49:02.204" endtime="20200513 14:49:03.053"></status>
 </kw>
-<doc>Check in de database of er inschrijvingen zijn voor dit toernooi</doc>
-<status status="PASS" starttime="20200513 13:19:08.236" endtime="20200513 13:19:08.464" critical="yes"></status>
-</test>
-<test id="s1-t2" name="Kontrole of inschrijving gelukt is">
-<kw name="Connect" library="MySql" type="setup">
+<status status="PASS" starttime="20200513 14:48:53.919" endtime="20200513 14:49:03.053"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:48:53.917" endtime="20200513 14:49:03.054"></status>
+</kw>
+<kw name="Connect" library="MySql">
 <kw name="Connect To Database" library="DatabaseLibrary">
 <doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
 connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
@@ -82,10 +406,10 @@ connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
 <arg>${DB_HOST}</arg>
 <arg>${DB_PORT}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.473" level="INFO">Connecting using : pymysql.connect(db=u875346739_ontipnlv_db, user=u875346739_ontip, passwd=Obelikx61#, host=45.87.80.101, port=3306, charset=None) </msg>
-<status status="PASS" starttime="20200513 13:19:08.471" endtime="20200513 13:19:08.510"></status>
+<msg timestamp="20200513 14:49:03.153" level="INFO">Connecting using : pymysql.connect(db=u875346739_ontipnlv_db, user=u875346739_ontip, passwd=Obelikx61#, host=45.87.80.101, port=3306, charset=None) </msg>
+<status status="PASS" starttime="20200513 14:49:03.069" endtime="20200513 14:49:03.187"></status>
 </kw>
-<status status="PASS" starttime="20200513 13:19:08.469" endtime="20200513 13:19:08.511"></status>
+<status status="PASS" starttime="20200513 14:49:03.068" endtime="20200513 14:49:03.187"></status>
 </kw>
 <kw name="Validate &quot;Inschrijving geregistreerd&quot;" library="MySql">
 <arguments>
@@ -101,9 +425,9 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <assign>
 <var>${queryResults}</var>
 </assign>
-<msg timestamp="20200513 13:19:08.514" level="INFO">Executing : Query  |  SELECT Licentie1, Naam1, Toernooi, Kenmerk FROM inschrijf ORDER BY Inschrijving DESC LIMIT 1 </msg>
-<msg timestamp="20200513 13:19:08.530" level="INFO">${queryResults} = (('45909', 'Erik Hendrikx', 'erik_test_toernooi', 'FIIJ.FKEE'),)</msg>
-<status status="PASS" starttime="20200513 13:19:08.513" endtime="20200513 13:19:08.530"></status>
+<msg timestamp="20200513 14:49:03.190" level="INFO">Executing : Query  |  SELECT Licentie1, Naam1, Toernooi, Kenmerk FROM inschrijf ORDER BY Inschrijving DESC LIMIT 1 </msg>
+<msg timestamp="20200513 14:49:03.209" level="INFO">${queryResults} = (('45909', 'Erik Hendrikx', 'erik_test_toernooi', 'HMDG.EGEF'),)</msg>
+<status status="PASS" starttime="20200513 14:49:03.190" endtime="20200513 14:49:03.209"></status>
 </kw>
 <kw name="Set Test Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
@@ -111,8 +435,8 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>${db_licentie1}</arg>
 <arg>${queryResults[0][0]}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.532" level="INFO">${db_licentie1} = 45909</msg>
-<status status="PASS" starttime="20200513 13:19:08.530" endtime="20200513 13:19:08.533"></status>
+<msg timestamp="20200513 14:49:03.214" level="INFO">${db_licentie1} = 45909</msg>
+<status status="PASS" starttime="20200513 14:49:03.210" endtime="20200513 14:49:03.215"></status>
 </kw>
 <kw name="Set Test Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
@@ -120,8 +444,8 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>${db_naam1}</arg>
 <arg>${queryResults[0][1]}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.535" level="INFO">${db_naam1} = Erik Hendrikx</msg>
-<status status="PASS" starttime="20200513 13:19:08.533" endtime="20200513 13:19:08.536"></status>
+<msg timestamp="20200513 14:49:03.218" level="INFO">${db_naam1} = Erik Hendrikx</msg>
+<status status="PASS" starttime="20200513 14:49:03.215" endtime="20200513 14:49:03.219"></status>
 </kw>
 <kw name="Set Test Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current test.</doc>
@@ -129,8 +453,8 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>${db_toernooi}</arg>
 <arg>${queryResults[0][2]}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.539" level="INFO">${db_toernooi} = erik_test_toernooi</msg>
-<status status="PASS" starttime="20200513 13:19:08.536" endtime="20200513 13:19:08.539"></status>
+<msg timestamp="20200513 14:49:03.222" level="INFO">${db_toernooi} = erik_test_toernooi</msg>
+<status status="PASS" starttime="20200513 14:49:03.219" endtime="20200513 14:49:03.222"></status>
 </kw>
 <kw name="Set Suite Variable" library="BuiltIn">
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
@@ -138,8 +462,8 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>${DB_KENMERK}</arg>
 <arg>${queryResults[0][3]}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.542" level="INFO">${DB_KENMERK} = FIIJ.FKEE</msg>
-<status status="PASS" starttime="20200513 13:19:08.540" endtime="20200513 13:19:08.542"></status>
+<msg timestamp="20200513 14:49:03.225" level="INFO">${DB_KENMERK} = HMDG.EGEF</msg>
+<status status="PASS" starttime="20200513 14:49:03.222" endtime="20200513 14:49:03.226"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -147,7 +471,7 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>${queryResults[0][0]}</arg>
 <arg>${LICENTIE1}</arg>
 </arguments>
-<status status="PASS" starttime="20200513 13:19:08.543" endtime="20200513 13:19:08.544"></status>
+<status status="PASS" starttime="20200513 14:49:03.226" endtime="20200513 14:49:03.227"></status>
 </kw>
 <kw name="Log Many" library="BuiltIn">
 <doc>Logs the given messages as separate entries using the INFO level.</doc>
@@ -155,9 +479,9 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>"De gevonden Licentie is"</arg>
 <arg>${db_licentie1}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.546" level="INFO">"De gevonden Licentie is"</msg>
-<msg timestamp="20200513 13:19:08.546" level="INFO">45909</msg>
-<status status="PASS" starttime="20200513 13:19:08.544" endtime="20200513 13:19:08.546"></status>
+<msg timestamp="20200513 14:49:03.228" level="INFO">"De gevonden Licentie is"</msg>
+<msg timestamp="20200513 14:49:03.229" level="INFO">45909</msg>
+<status status="PASS" starttime="20200513 14:49:03.228" endtime="20200513 14:49:03.229"></status>
 </kw>
 <kw name="Log Many" library="BuiltIn">
 <doc>Logs the given messages as separate entries using the INFO level.</doc>
@@ -165,9 +489,9 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>"De gevonden Naam is"</arg>
 <arg>${db_naam1}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.547" level="INFO">"De gevonden Naam is"</msg>
-<msg timestamp="20200513 13:19:08.548" level="INFO">Erik Hendrikx</msg>
-<status status="PASS" starttime="20200513 13:19:08.547" endtime="20200513 13:19:08.548"></status>
+<msg timestamp="20200513 14:49:03.230" level="INFO">"De gevonden Naam is"</msg>
+<msg timestamp="20200513 14:49:03.231" level="INFO">Erik Hendrikx</msg>
+<status status="PASS" starttime="20200513 14:49:03.230" endtime="20200513 14:49:03.231"></status>
 </kw>
 <kw name="Log Many" library="BuiltIn">
 <doc>Logs the given messages as separate entries using the INFO level.</doc>
@@ -175,9 +499,9 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>"Het toernooi is"</arg>
 <arg>${db_toernooi}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.549" level="INFO">"Het toernooi is"</msg>
-<msg timestamp="20200513 13:19:08.549" level="INFO">erik_test_toernooi</msg>
-<status status="PASS" starttime="20200513 13:19:08.548" endtime="20200513 13:19:08.549"></status>
+<msg timestamp="20200513 14:49:03.231" level="INFO">"Het toernooi is"</msg>
+<msg timestamp="20200513 14:49:03.232" level="INFO">erik_test_toernooi</msg>
+<status status="PASS" starttime="20200513 14:49:03.231" endtime="20200513 14:49:03.232"></status>
 </kw>
 <kw name="Log Many" library="BuiltIn">
 <doc>Logs the given messages as separate entries using the INFO level.</doc>
@@ -185,134 +509,50 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>"Het kernmerk is"</arg>
 <arg>${DB_KENMERK}</arg>
 </arguments>
-<msg timestamp="20200513 13:19:08.550" level="INFO">"Het kernmerk is"</msg>
-<msg timestamp="20200513 13:19:08.550" level="INFO">FIIJ.FKEE</msg>
-<status status="PASS" starttime="20200513 13:19:08.550" endtime="20200513 13:19:08.550"></status>
+<msg timestamp="20200513 14:49:03.233" level="INFO">"Het kernmerk is"</msg>
+<msg timestamp="20200513 14:49:03.233" level="INFO">HMDG.EGEF</msg>
+<status status="PASS" starttime="20200513 14:49:03.233" endtime="20200513 14:49:03.234"></status>
 </kw>
-<status status="PASS" starttime="20200513 13:19:08.512" endtime="20200513 13:19:08.551"></status>
+<status status="PASS" starttime="20200513 14:49:03.189" endtime="20200513 14:49:03.234"></status>
 </kw>
-<kw name="Disconnect" library="MySql" type="teardown">
+<kw name="Disconnect" library="MySql">
 <kw name="Disconnect From Database" library="DatabaseLibrary">
 <doc>Disconnects from the database.</doc>
-<msg timestamp="20200513 13:19:08.553" level="INFO">Executing : Disconnect From Database</msg>
-<status status="PASS" starttime="20200513 13:19:08.552" endtime="20200513 13:19:08.554"></status>
+<msg timestamp="20200513 14:49:03.236" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" starttime="20200513 14:49:03.236" endtime="20200513 14:49:03.237"></status>
 </kw>
-<status status="PASS" starttime="20200513 13:19:08.552" endtime="20200513 13:19:08.555"></status>
+<status status="PASS" starttime="20200513 14:49:03.235" endtime="20200513 14:49:03.237"></status>
 </kw>
+<kw name="End Web test" library="Common" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20200513 14:49:03.239" endtime="20200513 14:49:07.921"></status>
+</kw>
+<status status="PASS" starttime="20200513 14:49:03.238" endtime="20200513 14:49:07.921"></status>
+</kw>
+<doc>Een inschrijf formulier wordt geladen en de deelnemer schrijft zich in met 2 personen</doc>
 <tags>
-<tag>Controle</tag>
+<tag>critical</tag>
+<tag>Inschrijving</tag>
 </tags>
-<status status="PASS" starttime="20200513 13:19:08.467" endtime="20200513 13:19:08.555" critical="yes"></status>
+<status status="PASS" starttime="20200513 14:48:38.154" endtime="20200513 14:49:07.922" critical="yes"></status>
 </test>
-<test id="s1-t3" name="Verwijder inschrijving">
-<kw name="Connect" library="MySql" type="setup">
-<kw name="Connect To Database" library="DatabaseLibrary">
-<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
-connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
-<arguments>
-<arg>pymysql</arg>
-<arg>${DB_NAME}</arg>
-<arg>${DB_USER_NAME}</arg>
-<arg>${DB_USER_PASSWORD}</arg>
-<arg>${DB_HOST}</arg>
-<arg>${DB_PORT}</arg>
-</arguments>
-<msg timestamp="20200513 13:19:08.562" level="INFO">Connecting using : pymysql.connect(db=u875346739_ontipnlv_db, user=u875346739_ontip, passwd=Obelikx61#, host=45.87.80.101, port=3306, charset=None) </msg>
-<status status="PASS" starttime="20200513 13:19:08.560" endtime="20200513 13:19:08.597"></status>
-</kw>
-<status status="PASS" starttime="20200513 13:19:08.559" endtime="20200513 13:19:08.598"></status>
-</kw>
-<kw name="Verwijder &quot;Inschrijving&quot;" library="MySql">
-<kw name="Set Variable" library="BuiltIn">
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<arguments>
-<arg>Delete FROM inschrijf Where Kenmerk = '${DB_KENMERK}';</arg>
-</arguments>
-<assign>
-<var>${delete_command}</var>
-</assign>
-<msg timestamp="20200513 13:19:08.601" level="INFO">${delete_command} = Delete FROM inschrijf Where Kenmerk = 'FIIJ.FKEE';</msg>
-<status status="PASS" starttime="20200513 13:19:08.600" endtime="20200513 13:19:08.601"></status>
-</kw>
-<kw name="Execute Sql String" library="DatabaseLibrary">
-<doc>Executes the sqlString as SQL commands. Useful to pass arguments to your sql. Set optional input `sansTran` to
-True to run command without an explicit transaction commit or rollback.</doc>
-<arguments>
-<arg>${delete_command}</arg>
-</arguments>
-<msg timestamp="20200513 13:19:08.602" level="INFO">Executing : Execute SQL String  |  Delete FROM inschrijf Where Kenmerk = 'FIIJ.FKEE'; </msg>
-<status status="PASS" starttime="20200513 13:19:08.601" endtime="20200513 13:19:08.625"></status>
-</kw>
-<status status="PASS" starttime="20200513 13:19:08.599" endtime="20200513 13:19:08.625"></status>
-</kw>
-<kw name="Disconnect" library="MySql" type="teardown">
-<kw name="Disconnect From Database" library="DatabaseLibrary">
-<doc>Disconnects from the database.</doc>
-<msg timestamp="20200513 13:19:08.628" level="INFO">Executing : Disconnect From Database</msg>
-<status status="PASS" starttime="20200513 13:19:08.627" endtime="20200513 13:19:08.628"></status>
-</kw>
-<status status="PASS" starttime="20200513 13:19:08.626" endtime="20200513 13:19:08.629"></status>
-</kw>
-<status status="PASS" starttime="20200513 13:19:08.557" endtime="20200513 13:19:08.629" critical="yes"></status>
-</test>
-<test id="s1-t4" name="Validate &quot;Verwijder inschrijving&quot;">
-<kw name="Connect" library="MySql" type="setup">
-<kw name="Connect To Database" library="DatabaseLibrary">
-<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
-connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
-<arguments>
-<arg>pymysql</arg>
-<arg>${DB_NAME}</arg>
-<arg>${DB_USER_NAME}</arg>
-<arg>${DB_USER_PASSWORD}</arg>
-<arg>${DB_HOST}</arg>
-<arg>${DB_PORT}</arg>
-</arguments>
-<msg timestamp="20200513 13:19:08.635" level="INFO">Connecting using : pymysql.connect(db=u875346739_ontipnlv_db, user=u875346739_ontip, passwd=Obelikx61#, host=45.87.80.101, port=3306, charset=None) </msg>
-<status status="PASS" starttime="20200513 13:19:08.634" endtime="20200513 13:19:08.667"></status>
-</kw>
-<status status="PASS" starttime="20200513 13:19:08.633" endtime="20200513 13:19:08.667"></status>
-</kw>
-<kw name="Validate &quot;Verwijder Inschrijving&quot;" library="MySql">
-<kw name="Row Count Is 0" library="DatabaseLibrary">
-<doc>Check if any rows are returned from the submitted `selectStatement`. If there are, then this will throw an
-AssertionError. Set optional input `sansTran` to True to run command without an explicit transaction commit or
-rollback.</doc>
-<arguments>
-<arg>SELECT * FROM inschrijf Where Kenmerk = '${DB_KENMERK}';</arg>
-</arguments>
-<msg timestamp="20200513 13:19:08.671" level="INFO">Executing : Row Count Is 0  |  SELECT * FROM inschrijf Where Kenmerk = 'FIIJ.FKEE'; </msg>
-<msg timestamp="20200513 13:19:08.671" level="INFO">Executing : Row Count  |  SELECT * FROM inschrijf Where Kenmerk = 'FIIJ.FKEE'; </msg>
-<status status="PASS" starttime="20200513 13:19:08.670" endtime="20200513 13:19:08.694"></status>
-</kw>
-<status status="PASS" starttime="20200513 13:19:08.669" endtime="20200513 13:19:08.695"></status>
-</kw>
-<kw name="Disconnect" library="MySql" type="teardown">
-<kw name="Disconnect From Database" library="DatabaseLibrary">
-<doc>Disconnects from the database.</doc>
-<msg timestamp="20200513 13:19:08.698" level="INFO">Executing : Disconnect From Database</msg>
-<status status="PASS" starttime="20200513 13:19:08.697" endtime="20200513 13:19:08.700"></status>
-</kw>
-<status status="PASS" starttime="20200513 13:19:08.696" endtime="20200513 13:19:08.700"></status>
-</kw>
-<status status="PASS" starttime="20200513 13:19:08.631" endtime="20200513 13:19:08.700" critical="yes"></status>
-</test>
-<doc>De inschrijving wordt gekontroleerd en daarna verwijderd</doc>
-<status status="PASS" starttime="20200513 13:19:07.892" endtime="20200513 13:19:08.704"></status>
+<doc>Een deelnemer aan een toernooi schrijft zich in</doc>
+<status status="PASS" starttime="20200513 14:48:36.625" endtime="20200513 14:49:07.928"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="4" fail="0">Critical Tests</stat>
-<stat pass="4" fail="0">All Tests</stat>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0">Controle</stat>
+<stat pass="1" fail="0">critical</stat>
+<stat pass="1" fail="0">Inschrijving</stat>
 </tag>
 <suite>
-<stat pass="4" fail="0" id="s1" name="CheckInschrijvenToernooi">CheckInschrijvenToernooi</stat>
+<stat pass="1" fail="0" id="s1" name="InschrijvenToernooi">InschrijvenToernooi</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20200513 13:19:07.845" level="ERROR">Error in file 'C:\Users\Gebruiker\OneDrive\GitHub\RF_petanqueinschrijven\tests\CheckInschrijvenToernooi.robot': Invalid syntax in test case 'Validate if inschrijvingen exist': Non-existing setting 'Arguments'.</msg>
 </errors>
 </robot>

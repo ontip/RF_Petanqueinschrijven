@@ -11,30 +11,25 @@ Test Teardown  MySql.Disconnect
 
 
 *** Variables ***
-${LICENTIE1}                        45909
-${toernooi}     erik_test_toernooi
+${LICENTIE1}        45909
+${toernooi}         erik_test_toernooi
 
 *** Keywords ***
-
 
 
 *** Test Cases ***
 
 Validate if inschrijvingen exist
     [Documentation]    Check in de database of er inschrijvingen zijn voor dit toernooi
-    [Arguments]   ${toernooi}
     MySql.Validate if inschrijvingen exist  ${toernooi}
 
 Kontrole of inschrijving gelukt is
     [Tags]  Controle
     MySql.Validate "Inschrijving geregistreerd"   ${LICENTIE1}
 
-    #OntipApp.Schrijf in voor toernooi   ${URL}   ${toernooi}
-    #OntipApp.Validate inschrijving    ${URL}   ${toernooi}
-    #OnTipApp.Verwijder inschrijving   ${URL}   ${toernooi}
-
 Verwijder inschrijving
-    MySql.Verwijder "Inschrijving"
+    [Documentation]    Verwijder de inschrijving uit de database
+     MySql.Verwijder "Inschrijving"
 
 Validate "Verwijder inschrijving"
     MySql.Validate "Verwijder Inschrijving"

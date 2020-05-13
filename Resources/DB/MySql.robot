@@ -21,8 +21,9 @@ Connect
 
 
 Validate "Inschrijving geregistreerd"
-    [arguments]    ${LICENTIE1}
+    [Arguments]    ${LICENTIE1}
         # notice here we use LIMIT 1 instead of TOP 1 in SQL Server
+
     ${queryResults} =  Query  SELECT Licentie1, Naam1, Toernooi, Kenmerk FROM inschrijf ORDER BY Inschrijving DESC LIMIT 1
     # Examine the (0-based) 1st field of the first record in the results
     Set Test Variable   ${db_licentie1}          ${queryResults[0][0]}

@@ -3,10 +3,6 @@ Library    SeleniumLibrary
 Resource    ./DB/MySql.robot
 Resource    ./PO/Inschrijfformulier.robot
 
-*** Variables ***
-
-
-
 *** Keywords ***
 
 Load "Inschrijf formulier"
@@ -24,9 +20,6 @@ Should be able to "Inschrijven met behulp van Licenties"
 Should be able to "Inschrijven met behulp van Licentie en Naam en Vereniging"
     [Arguments]    ${url}   @{inschrijving}
     Inschrijfformulier.Should be able to "Inschrijven met behulp van Licentie en Naam en Vereniging"  ${url}
-
-    #OntipApp.Validate inschrijving    ${URL}   ${toernooi}
-    #OnTipApp.Verwijder inschrijving   ${URL}   ${toernooi}
 
 Validate "Inschrijving geregistreerd"
     [Arguments]    ${LICENTIE1}
