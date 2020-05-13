@@ -12,7 +12,7 @@ Test Teardown  MySql.Disconnect
 
 *** Variables ***
 ${LICENTIE1}                        45909
-
+${toernooi}     erik_test_toernooi
 
 *** Keywords ***
 
