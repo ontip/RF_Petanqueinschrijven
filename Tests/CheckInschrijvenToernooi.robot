@@ -11,10 +11,11 @@ Test Teardown  MySql.Disconnect
 
 
 *** Variables ***
-${LICENTIE1}        45909
-${toernooi}         erik_test_toernooi
+${LICENTIE1}             45909
+${toernooi}              erik_test_toernooi
 
 *** Keywords ***
+
 
 
 *** Test Cases ***
@@ -29,7 +30,9 @@ Kontrole of inschrijving gelukt is
 
 Verwijder inschrijving
     [Documentation]    Verwijder de inschrijving uit de database
+    log     iets
      MySql.Verwijder "Inschrijving"
 
 Validate "Verwijder inschrijving"
+    log     iets
     MySql.Validate "Verwijder Inschrijving"

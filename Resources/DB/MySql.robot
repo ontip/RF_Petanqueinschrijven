@@ -44,10 +44,11 @@ Validate "Verwijder Inschrijving"
     Row Count is 0  SELECT * FROM inschrijf Where Kenmerk = '${DB_KENMERK}';
 
 Validate if inschrijvingen exist
+    [Documentation]   Kontroleer of er inschrijvingen zijn voor dit toernooi
     [Arguments]   ${toernooi}
     ${current_row_count} =  Row Count   SELECT * FROM inschrijf Where Toernooi = '${toernooi}';
     Log  ${current_row_count}
-    Row Count Is Greater Than X  SELECT * FROM inschrijf Where Toernooi = '${toernooi}';   0
+    Row Count Is Greater Than X   SELECT * FROM inschrijf Where Toernooi = '${toernooi}';   0
 
 
 
